@@ -5,41 +5,22 @@ export const openai = new OpenAI({
 })
 
 export async function generateEmbedding(text: string): Promise<number[]> {
-  const response = await openai.embeddings.create({
-    model: 'text-embedding-3-small',
-    input: text,
-    encoding_format: 'float',
-  })
-
-  return response.data[0].embedding
+  // TODO: Implement OpenAI embeddings when API key is available
+  // For MVP, return dummy embedding vector
+  return Array(1536).fill(0).map(() => Math.random())
 }
 
 export async function generateClue(
   matchVector: number[],
   responseContext: string
 ): Promise<string> {
-  const message = await openai.messages.create({
-    model: 'claude-3-5-sonnet-20241022',
-    max_tokens: 150,
-    messages: [
-      {
-        role: 'user',
-        content: `Based on this context, generate a mysterious yet revealing clue about someone:
-        
-Context: ${responseContext}
-
-Clue should be:
-- Poetic and intriguing
-- Reveal something meaningful without identifying the person
-- In French
-- Maximum 15 words
-- Format: "Votre match [clue]"
-
-Generate only the clue, nothing else.`,
-      },
-    ],
-  })
-
-  const content = message.content[0]
-  return content.type === 'text' ? content.text : 'Une âme curieuse vous attend.'
+  // TODO: Implement Claude clue generation when API key is available
+  // For MVP, return sample clue
+  const clues = [
+    'Votre match aime les conversations profondes sous les étoiles',
+    'Votre match rêve de voyages en solo et de découvertes',
+    'Votre match croit aux connexions authentiques',
+    'Votre match cherche des âmes curiosity-driven',
+  ]
+  return clues[Math.floor(Math.random() * clues.length)]
 }
