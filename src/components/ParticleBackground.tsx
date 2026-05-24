@@ -2,6 +2,15 @@
 
 import { useEffect, useRef } from 'react'
 
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  radius: number
+  opacity: number
+}
+
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -16,48 +25,39 @@ export default function ParticleBackground() {
     canvas.width = canvas.offsetWidth
     canvas.height = canvas.offsetHeight
 
-    // Particle array
-    const particles: any[] = []
+    // Create particles
+    const particles: Particle[] = []
     const particleCount = 30
 
-    class Particle {
-      x: number
-      y: number
-      vx: number
-      vy: number
-      radius: number
-      opacity: number
+    const createParticle = (width: number, height: number): Particle => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      radius: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.5 + 0.2,
+    })
 
-      constructor(canvasWidth: number, canvasHeight: number) {
-        this.x = Math.random() * canvasWidth
-        this.y = Math.random() * canvasHeight
-        this.vx = (Math.random() - 0.5) * 0.3
-        this.vy = (Math.random() - 0.5) * 0.3
-        this.radius = Math.random() * 2 + 1
-        this.opacity = Math.random() * 0.5 + 0.2
-      }
+    const updateParticle = (p: Particle, width: number, height: number) => {
+      p.x += p.vx
+      p.y += p.vy
 
-      update(canvasWidth: number, canvasHeight: number) {
-        this.x += this.vx
-        this.y += this.vy
+      if (p.x < 0) p.x = width
+      if (p.x > width) p.x = 0
+      if (p.y < 0) p.y = height
+      if (p.y > height) p.y = 0
+    }
 
-        if (this.x < 0) this.x = canvasWidth
-        if (this.x > canvasWidth) this.x = 0
-        if (this.y < 0) this.y = canvasHeight
-        if (this.y > canvasHeight) this.y = 0
-      }
-
-      draw(context: CanvasRenderingContext2D) {
-        context.fillStyle = `rgba(201, 168, 76, ${this.opacity})`
-        context.beginPath()
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        context.fill()
-      }
+    const drawParticle = (p: Particle, context: CanvasRenderingContext2D) => {
+      context.fillStyle = `rgba(201, 168, 76, ${p.opacity})`
+      context.beginPath()
+      context.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+      context.fill()
     }
 
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle(canvas.width, canvas.height))
+      particles.push(createParticle(canvas.width, canvas.height))
     }
 
     // Animation loop
@@ -66,8 +66,8 @@ export default function ParticleBackground() {
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach((p) => {
-        p.update(canvas.width, canvas.height)
-        p.draw(ctx)
+        updateParticle(p, canvas.width, canvas.height)
+        drawParticle(p, ctx)
       })
 
       requestAnimationFrame(animate)
@@ -77,8 +77,10 @@ export default function ParticleBackground() {
 
     // Handle resize
     const handleResize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
+      if (canvas) {
+        canvas.width = canvas.offsetWidth
+        canvas.height = canvas.offsetHeight
+      }
     }
 
     window.addEventListener('resize', handleResize)
