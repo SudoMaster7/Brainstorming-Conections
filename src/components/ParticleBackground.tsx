@@ -28,36 +28,36 @@ export default function ParticleBackground() {
       radius: number
       opacity: number
 
-      constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
+      constructor(canvasWidth: number, canvasHeight: number) {
+        this.x = Math.random() * canvasWidth
+        this.y = Math.random() * canvasHeight
         this.vx = (Math.random() - 0.5) * 0.3
         this.vy = (Math.random() - 0.5) * 0.3
         this.radius = Math.random() * 2 + 1
         this.opacity = Math.random() * 0.5 + 0.2
       }
 
-      update() {
+      update(canvasWidth: number, canvasHeight: number) {
         this.x += this.vx
         this.y += this.vy
 
-        if (this.x < 0) this.x = canvas.width
-        if (this.x > canvas.width) this.x = 0
-        if (this.y < 0) this.y = canvas.height
-        if (this.y > canvas.height) this.y = 0
+        if (this.x < 0) this.x = canvasWidth
+        if (this.x > canvasWidth) this.x = 0
+        if (this.y < 0) this.y = canvasHeight
+        if (this.y > canvasHeight) this.y = 0
       }
 
-      draw() {
-        ctx.fillStyle = `rgba(201, 168, 76, ${this.opacity})`
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-        ctx.fill()
+      draw(context: CanvasRenderingContext2D) {
+        context.fillStyle = `rgba(201, 168, 76, ${this.opacity})`
+        context.beginPath()
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+        context.fill()
       }
     }
 
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle())
+      particles.push(new Particle(canvas.width, canvas.height))
     }
 
     // Animation loop
@@ -66,8 +66,8 @@ export default function ParticleBackground() {
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach((p) => {
-        p.update()
-        p.draw()
+        p.update(canvas.width, canvas.height)
+        p.draw(ctx)
       })
 
       requestAnimationFrame(animate)
