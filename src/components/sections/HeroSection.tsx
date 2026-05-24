@@ -96,7 +96,6 @@ export default function HeroSection() {
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
-        <p className="text-sm font-body text-noir/40">Découvrez plus</p>
         <p className="text-2xl mt-2">↓</p>
       </motion.div>
     </section>
