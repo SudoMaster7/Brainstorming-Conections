@@ -22,9 +22,9 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: 'ELLEVVE — Connections qui élèvent',
-  description: 'Connecter des esprits. Avant de connecter des corps. L\'événement de matching intelligent à Nice.',
+  description: 'Connecter des esprits. Avant de conecter des corps. L\'événement de matching intelligent à Nice.',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/Logo.png',
   },
 }
 

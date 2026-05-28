@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -8,7 +9,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="font-display text-lg mb-4">ELLEVVE</h3>
+            <div className="flex items-center gap-2 mb-4">
+              <Image
+                src="/Logo.png"
+                alt="ELLEVVE Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8"
+              />
+              <h3 className="font-display text-lg">ELLEVVE</h3>
+            </div>
             <p className="text-sm font-body text-off-white/70">
               Connections qui élèvent.
             </p>

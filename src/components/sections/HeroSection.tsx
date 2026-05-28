@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import ParticleBackground from '@/components/ParticleBackground'
 
 export default function HeroSection() {
@@ -10,11 +11,28 @@ export default function HeroSection() {
       <ParticleBackground />
 
       <div className="relative z-10 text-center px-6 max-w-5xl">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="mb-8 flex justify-center"
+        >
+          <Image
+            src="/Logo.png"
+            alt="ELLEVVE Logo"
+            width={80}
+            height={80}
+            className="w-20 h-20"
+            priority
+          />
+        </motion.div>
+
         {/* Premium badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-8 inline-block"
         >
           <p className="text-sm font-body tracking-widest text-gold-matte uppercase">
