@@ -17,19 +17,7 @@ export default function CTASection() {
           Garantir votre place
         </motion.h2>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-xl font-body text-off-white/80 mb-12"
-        >
-          €8–12 de dépôt de confirmation
-          <br />
-          <span className="text-sm text-off-white/60">
-            (Intégralement converti en crédit bar si vous êtes présent.e)
-          </span>
-        </motion.p>
+
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

@@ -12,10 +12,7 @@ const faqs = [
     q: 'Mes données sont-elles sécurisées?',
     a: 'Absolument. Vos données personnelles et vos réponses NLP sont complètement séparées. Vous êtes identifié par un codinome. Aucune photo n\'est stockée. Nous respectons le RGPD à 100%.',
   },
-  {
-    q: 'C\'est gratuit?',
-    a: 'L\'inscription coûte €8–12 (dépôt de confirmation). Ce montant est entièrement converti en crédit bar si vous êtes présent à l\'événement. Si vous ne venez pas, c\'est retenu par ELLEVVE.',
-  },
+
   {
     q: 'Qui peut s\'inscrire?',
     a: '30–40 personnes sélectionnées. Nous cherchons des esprits rares : curieux, honnêtes, ouverts à la vulnérabilité. Pas de limite d\'âge stricte, mais une mentalité critique requise.',

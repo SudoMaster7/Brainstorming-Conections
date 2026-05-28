@@ -86,7 +86,7 @@ export default function HeroSection() {
           className="text-sm font-body text-noir/60"
         >
           <p className="mb-3">👥 30–40 participants sélectionnés</p>
-          <p>💎 €8–12 de dépôt (converti en crédit bar si présent)</p>
+          <p>✨ Une expérience exclusive et rare</p>
         </motion.div>
       </div>
 

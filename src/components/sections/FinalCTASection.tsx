@@ -32,24 +32,7 @@ export default function FinalCTASection() {
           30–40 places seulement. L'événement ELLEVVE est une expérience rare, pensée pour des esprits rares.
         </motion.p>
 
-        {/* Pricing highlight */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mb-12 p-8 bg-gold-matte/20 border-2 border-gold-matte rounded-lg"
-        >
-          <p className="text-5xl font-display font-bold text-gold-matte mb-2">€8–12</p>
-          <p className="text-lg font-body text-off-white/80">
-            Dépôt de confirmation
-          </p>
-          <p className="text-sm font-body text-off-white/60 mt-3">
-            ✓ Converti en crédit bar si vous venez<br />
-            ✓ Accès exclusif à votre Passeport<br />
-            ✓ Participation aux 4 dimensions du SUDO Engine
-          </p>
-        </motion.div>
+
 
         {/* Main CTA */}
         <motion.div
